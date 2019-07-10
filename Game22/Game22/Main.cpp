@@ -12,7 +12,6 @@ void RestartGame()
 }
 #endif
 
-
 void Setup()
 {
 	LM_Setup();
