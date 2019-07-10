@@ -45,7 +45,6 @@ void GetKeyStatus_sub(stKeyStatus* a_pKS_Player)
 	a_pKS_Player->m_D = !digitalRead(PIN_KEY_D);
 }
 
-
 void GetKeyStatus_Debug(stKeyStatus* a_pKS_Player1, stKeyStatus* a_pKS_Player2)
 {
 #if DO_DEBUG
@@ -68,9 +67,6 @@ void GetKeyStatus_Debug(stKeyStatus* a_pKS_Player1, stKeyStatus* a_pKS_Player2)
 	SERIAL_PRINTLN();
 #endif
 }
-
-
-
 
 void UI_Input::GetKeyStatus(stKeyStatus* a_pKS_Player1, stKeyStatus* a_pKS_Player2)
 {
