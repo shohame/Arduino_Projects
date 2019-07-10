@@ -10,7 +10,6 @@ void SnakePath::Reset(void)
 	m_Index=-1; 
 }
 
-
 void SnakePath::AddPoint(int8 a_Direction)
 {
 	if (m_Index<0 || a_Direction != m_Path[m_Index].m_Dir)
