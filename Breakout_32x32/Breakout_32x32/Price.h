@@ -9,7 +9,7 @@
 
 enum ePriceType 
 {
-	eLarge	= 10,
+	eLarge	= 0,
 	eSmall,
 	eThree,
 	eBall,
@@ -29,6 +29,7 @@ public:
 
 	void MarkBrickOnMatrix();
 
+	Char_BM m_CBM;
 
 };
 

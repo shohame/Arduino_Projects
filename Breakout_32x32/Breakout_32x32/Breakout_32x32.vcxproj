@@ -21,14 +21,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -83,9 +83,10 @@
     <ClInclude Include="Breakout.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="BrickArrTemp.h" />
-    <ClInclude Include="Bricks.h" />
     <ClInclude Include="Char_BM.h" />
+    <ClInclude Include="Char_BM_HEB_RAW.h" />
     <ClInclude Include="Fire.h" />
+    <ClInclude Include="GameControl.h" />
     <ClInclude Include="General.h" />
     <ClInclude Include="Globe.h" />
     <ClInclude Include="Globe_Data.h" />
@@ -106,9 +107,9 @@
       <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Bricks.cpp" />
     <ClCompile Include="Char_BM.cpp" />
     <ClCompile Include="Fire.cpp" />
+    <ClCompile Include="GameControl.cpp" />
     <ClCompile Include="General.cpp" />
     <ClCompile Include="Globe.cpp" />
     <ClCompile Include="Led_Matrix.cpp" />

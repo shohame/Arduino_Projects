@@ -18,18 +18,23 @@ public:
 
 class SnakePath
 {
+	stPoint		m_Ps; // starting point
+	stPoint		m_Pe; // end point
 	Path m_Path[SP_ARR_LEN];
 	int16		m_Index;
-
+	eDirection GetDirection(stPoint a_P);
+public:
 	void Reset() ;
 
-	void AddPoint(int8 a_Direction);
+	void	AddPoint(stPoint a_P);
 
 	Path	m_IterPath;
 	int16	m_IterIndex;
+	stPoint	m_IterPc;
 
 	void IterReset() ;
 	int8 IterGetNext(stPoint *a_pP)	;
+	void IterUpdatePc(eDirection a_Dir);
 };
 
 

@@ -13,6 +13,25 @@ void MovingBrick::Init(int8 a_x, int8 a_y, float32 a_Vx, float32 a_Vy)
 	m_V_s.m_Y = a_Vy;
 }
 
+ void MovingBrick::MarkBrickOnMatrix()
+ {
+	stLoc SaveLoc = m_Loc_s;
+
+	if (ABS(m_V_s.m_X) > ABS(m_V_s.m_Y))
+	{
+		m_Loc_s.m_X = ROUND_CORD_TO_U8(m_Loc_s.m_X);
+		m_Loc_s.m_Y += (m_Loc_s.m_X - SaveLoc.m_X) *  m_V_s.m_Y / m_V_s.m_X;
+	}
+	else
+	{
+		m_Loc_s.m_Y = ROUND_CORD_TO_U8(m_Loc_s.m_Y);
+		m_Loc_s.m_X += (m_Loc_s.m_Y - SaveLoc.m_Y) *  m_V_s.m_X / m_V_s.m_Y;
+	}
+	float AAA = ROUND_CORD_TO_U8(m_Loc_s.m_X);
+	Brick::MarkBrickOnMatrix();
+	m_Loc_s = SaveLoc;
+ }
+
 void MovingBrick::ChangeAngleBy(float32 a_dAngle)
 {
 

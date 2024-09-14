@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "General.h"
+#include "Char_BM.h"
 #include "Brick.h"
 #include "MovingBrick.h"
 #include "Ball.h"
@@ -8,18 +9,18 @@
 #include "Stick.h"
 #include "Display.h"
 #include "BrickArrTemp.h"
-#include "Bricks.h"
+#include "GameControl.h"
 
 
-Bricks::Bricks(void)
+GameControl::GameControl(void)
 {
 	ClearAllBricksBallsWalls();
 }
-Bricks::~Bricks(void)
+GameControl::~GameControl(void)
 {
 }
 
-void Bricks::MarkBricksOnMatrix()
+void GameControl::MarkBricksOnMatrix()
 {
 	m_BrickArr.	MarkBrickArrOnMatrix();
 	m_BallArr.	MarkBrickArrOnMatrix();
@@ -31,7 +32,7 @@ void Bricks::MarkBricksOnMatrix()
 }
 
 
-void Bricks::MoveAllBalls(int16 a_dT_mSec)
+void GameControl::MoveAllBalls(int16 a_dT_mSec)
 {
 	int8 BrickID;
 	BallArr* pBrickArr = &m_BallArr;
@@ -66,7 +67,7 @@ void Bricks::MoveAllBalls(int16 a_dT_mSec)
 	}
 }
 
-void Bricks::MoveAllFires(int16 a_dT_mSec)
+void GameControl::MoveAllFires(int16 a_dT_mSec)
 {
 	int8 BrickID;
 	FireArr* pBrickArr = &m_FireArr;
@@ -99,7 +100,7 @@ void Bricks::MoveAllFires(int16 a_dT_mSec)
 	}
 }
 
-void Bricks::MoveAllPrices(int16 a_dT_mSec)
+void GameControl::MoveAllPrices(int16 a_dT_mSec)
 {
 	PriceArr* pBrickArr = &m_PriceArr;
 	Price *pBrick;
@@ -126,7 +127,7 @@ void Bricks::MoveAllPrices(int16 a_dT_mSec)
 }
 
 
-void Bricks::GetThePrice(ePriceType a_eType, int8 a_x, int8 a_y)
+void GameControl::GetThePrice(ePriceType a_eType, int8 a_x, int8 a_y)
 {
 	switch(a_eType)
 	{
@@ -161,7 +162,7 @@ void Bricks::GetThePrice(ePriceType a_eType, int8 a_x, int8 a_y)
 	}
 }
 
-void Bricks::ClearAllBricksBallsWalls()
+void GameControl::ClearAllBricksBallsWalls()
 {
 	m_BrickArr.	ClearAll();
 	m_BallArr.	ClearAll();
@@ -172,7 +173,7 @@ void Bricks::ClearAllBricksBallsWalls()
 
 
 
-void Bricks::InitLeve_Clear()
+void GameControl::InitLeve_Clear()
 {
 	ClearAllBricksBallsWalls();
 
@@ -184,7 +185,7 @@ void Bricks::InitLeve_Clear()
 	m_WallArr.Add(24,0,(int8)1, (int8)6);		// Score / Life divader 
 }
 
-void Bricks::AddLineOfBricks(int8 a_x0, int8 a_y0, int8 a_Count)
+void GameControl::AddLineOfBricks(int8 a_x0, int8 a_y0, int8 a_Count)
 {
 	for(int8 x=0; x<a_Count; x++)
 	{
@@ -193,31 +194,72 @@ void Bricks::AddLineOfBricks(int8 a_x0, int8 a_y0, int8 a_Count)
 }
 
 
-void Bricks::InitLevel(int8 a_Level)
+void GameControl::InitLevel(int8 a_Level)
 {
 	InitLeve_Clear();
 
 	switch(a_Level)
 	{
 	case 1:
-		AddLineOfBricks(0, 8,  8);
+		AddLineOfBricks(0, 8, 8);
 		AddLineOfBricks(2, 11, 7);
-		break;	
+		break;
+		break;
 	case 2:
-		AddLineOfBricks(0, 8,  8);
+		AddLineOfBricks(0, 8, 8);
 		AddLineOfBricks(2, 11, 7);
-		AddLineOfBricks(0, 14,  8);
-		AddLineOfBricks(2, 17,  7);
+		AddLineOfBricks(0, 14, 8);
+		AddLineOfBricks(2, 17, 7);
 		break;
 	case 3:
-		AddLineOfBricks(0, 8,  8);
+		m_WallArr.Add(8, 12, (int8)1, (int8)14);
+		m_WallArr.Add(22, 12, (int8)1, (int8)14);
+		m_WallArr.Add(8, 25, (int8)15, (int8)1);
+		m_BrickArr.Add(8, 10);
+		m_BrickArr.Add(11, 10);
+		m_BrickArr.Add(14, 10);
+		m_BrickArr.Add(17, 10);
+		m_BrickArr.Add(20, 10);
+		m_BrickArr.Add(10, 14);
+		m_BrickArr.Add(18, 18);
+		break;
+	case 4:
+		m_WallArr.Add(3, 10, (int8)1, (int8)14);
+		m_WallArr.Add(4, 13, (int8)7, (int8)2);
+		m_WallArr.Add(26, 10, (int8)1, (int8)14);
+		m_WallArr.Add(19, 13, (int8)7, (int8)2);
+		m_WallArr.Add(14, 11, (int8)2, (int8)14);
+		m_WallArr.Add(9, 17, (int8)12, (int8)2);
+		m_BrickArr.Add(20, 21);
+		m_BrickArr.Add(7, 21);
+		m_BrickArr.Add(11, 13);
+		m_BrickArr.Add(16, 13);
+		m_BrickArr.Add(6, 9);
+		m_BrickArr.Add(21, 9);
+		break;
+	case 5:
+		m_WallArr.Add(0, 17, (int8)6, (int8)1);
+		m_WallArr.Add(10, 17, (int8)11, (int8)1);
+		m_WallArr.Add(26, 17, (int8)6, (int8)1);
+		m_WallArr.Add(15, 9, (int8)1, (int8)17);
+		m_BrickArr.Add(3, 10);
+		m_BrickArr.Add(9, 14);
+		m_BrickArr.Add(4, 19);
+		m_BrickArr.Add(9, 22);
+		m_BrickArr.Add(20, 10);
+		m_BrickArr.Add(26, 14);
+		m_BrickArr.Add(21, 19);
+		m_BrickArr.Add(26, 22);
+		break;
+	case 6:
+		AddLineOfBricks(0, 8, 8);
 		AddLineOfBricks(2, 15, 7);
 
-		m_WallArr.Add(0, 12, (int8)11, (int8)1);	
-		m_WallArr.Add(21 ,12,(int8)11 , (int8)1);	
+		m_WallArr.Add(0, 12, (int8)11, (int8)1);
+		m_WallArr.Add(21, 12, (int8)11, (int8)1);
 		break;
 
-	case 4:
+	case 7:
 		AddLineOfBricks(0, 8,  8);
 		AddLineOfBricks(2, 11, 7);
 
@@ -226,7 +268,7 @@ void Bricks::InitLevel(int8 a_Level)
 		m_WallArr.Add(0, 23, (int8)9,	(int8)1);	
 		m_WallArr.Add(15, 23, (int8)13, (int8)1);	
 		break;
-	case 5:
+	case 8:
 		AddLineOfBricks(0, 8,  8);
 
 		m_BrickArr.Add(3, 21);
@@ -239,10 +281,9 @@ void Bricks::InitLevel(int8 a_Level)
 		m_WallArr.Add(6,	21,	(int8)20,	(int8)2);	
 		m_WallArr.Add(29,	21,	(int8)3,	(int8)2);	
 
-
 		break;
 
 	}
-	m_BallArr.Add(16,28, (float)3.0, (float)-6.0);
+	m_BallArr.Add(16,28, (float)3.0, (float)-6.1);
 }
 

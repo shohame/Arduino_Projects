@@ -43,7 +43,8 @@
 #define OP_SCANLIMIT   11
 #define OP_SHUTDOWN    12
 #define OP_DISPLAYTEST 15
-
+#define SPI_SPEED 4000000 //10000000
+#define MY_SPI_MODE SPI_MODE2
 
 LedControl_HW::LedControl_HW(byte csPin, byte numDevices) {
     SPI_CS=csPin;
@@ -216,7 +217,7 @@ void LedControl_HW::LC_ClearLeds_notLedStatus()
 void LedControl_HW::LC_UpdateLeds() 
 {
 	
-	SPI.beginTransaction(SPISettings(10000000, MSBFIRST, SPI_MODE2));
+	SPI.beginTransaction(SPISettings(SPI_SPEED, MSBFIRST, MY_SPI_MODE));
 	for (byte r=0; r<8; r++)
 	{
 		digitalWrite(SPI_CS,LOW);
@@ -301,7 +302,7 @@ void LedControl_HW::spiTransfer(byte addr, byte opcode, byte data)
     int maxbytes=maxDevices*2;
 	int i;
     digitalWrite(SPI_CS,LOW);
-	SPI.beginTransaction(SPISettings(10000000, MSBFIRST, SPI_MODE2));
+	SPI.beginTransaction(SPISettings(SPI_SPEED, MSBFIRST, MY_SPI_MODE));
    
     for(i=0; i<maxbytes-offset-2; i++)
 	{

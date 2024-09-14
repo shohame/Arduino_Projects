@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "General.h"
 #include "Led_Matrix.h"
+#include "Char_BM.h"
 #include "Brick.h"
 #include "MovingBrick.h"
 #include "Stick.h"
@@ -9,13 +10,13 @@
 #include "Price.h"
 #include "Display.h"
 #include "BrickArrTemp.h"
-#include "Bricks.h"
+#include "GameControl.h"
 #include "UI_Input.h"
 #include "Globe.h"
 
 #include "Breakout.h"
 
-Bricks g_Bricks;
+GameControl g_Bricks;
 UI_Input g_UI_In;
 int8 Level = 1;
 
@@ -27,8 +28,6 @@ void RestartGame()
 	LM_Clear();
 	TIC_mS();
 }
-
-int Arr[] = {1,2,3,4,5,6};
 
 
 void Setup()
@@ -42,14 +41,16 @@ void Setup()
 
 void Loop()
 {
-	Bricks *pBricks = &g_Bricks; 
+	GameControl *pBricks = &g_Bricks; 
 	int16 Toc = (int16)TOC_mS();
 	Toc = MIN(Toc, MAX_FRAME_TIME);
+	//Toc = 30;
 	if (pBricks->m_BrickArr.m_Count == 0)
 	{
 		DELAY(500);
 		Level ++;
 		pBricks->InitLevel(Level);
+		pBricks->m_Disply.DisplayLevelText(Level);
 	}
 	if (pBricks->m_BallArr.m_Count==0)
 	{

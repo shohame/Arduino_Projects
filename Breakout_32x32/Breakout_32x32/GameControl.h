@@ -1,5 +1,5 @@
-#ifndef __BREAKS_H
-#define __BREAKS_H
+#ifndef __GAMECONTROL_H
+#define __GAMECONTROL_H
 
 //#include "BrickArrTemp.h"
 
@@ -18,11 +18,11 @@ typedef BrickArrTemp<Fire,	MAX_NUM_OF_FIRE>	FireArr;
 
 #define GIVE_PRICE_RATE		5  // for each 5 bricks give 1 price
 
-class Bricks
+class GameControl
 {
 public:
-	Bricks(void);
-	~Bricks(void);
+	GameControl(void);
+	~GameControl(void);
 
 	Display	m_Disply;
 
@@ -49,4 +49,4 @@ public:
 private:
 	void InitLeve_Clear();
 };
-#endif // #ifndef __BREAKS_H
+#endif // #ifndef __GAMECONTROL_H

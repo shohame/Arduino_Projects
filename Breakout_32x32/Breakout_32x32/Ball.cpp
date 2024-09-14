@@ -4,7 +4,7 @@
 #include "Brick.h"
 #include "MovingBrick.h"
 #include "Ball.h"
-
+ 
 Ball::Ball(void)
 {
 	Init();

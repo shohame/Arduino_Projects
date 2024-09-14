@@ -1,13 +1,10 @@
 #include "StdAfx.h"
 #include "General.h"
 #include "Led_Matrix.h"
+#include "Char_BM.h"
 #include "Display.h"
 #include <math.h>
 
-const   Line_Bit  Digit_arr[NUM_OF_DIG][DIG_HEIGHT] PROGMEM = 
-	{	
-		#include "Number_Bitmap.h"
-	};
 					
 Display::Display(void)
 {
@@ -32,6 +29,25 @@ void Display::AddScore(int32 a_Value)
 	m_Sum_dT = 0;
 }
 
+void Display::DisplayLevelText(int8 a_Level)
+{
+	
+	char A[] = "LEVEL";
+	
+	for (int8 y=32; y>-14; y--)
+	{
+		LM_Clear();
+		m_CBM.WriteStr(A, 4,y);
+		m_CBM.WriteChar(a_Level ,14 , y + 7);
+		LM_PC_DSP_Display_Matrix();
+		DELAY(20);
+		if (y==10)
+		{
+			DELAY(2000);
+		}
+	}
+	LM_Clear();
+}
 
 void Display::MarkOnMatrix(int16 a_dT)
 {
@@ -72,7 +88,7 @@ void Display::MarkOnMatrix(int16 a_dT)
 
 		for(int8 y=0; y<DIG_HEIGHT; y++)
 		{
-			int8 Line = pgm_read_word_near((int8*)&Digit_arr[Di][y]);
+			uint8 Line = m_CBM.GetDigitOrLetterLine(Di, y);
 			for(int8 x=0; x<DIG_WIDTH; x++)
 			{
 				LM_SetPoint( x0 + x, y0 + y ,(Line>>x) & 1);
@@ -84,7 +100,7 @@ void Display::MarkOnMatrix(int16 a_dT)
 	Di = m_Life;
 	for(int8 y=0; y<DIG_HEIGHT; y++)
 	{
-		int8 Line =pgm_read_word_near((int8*)&Digit_arr[Di][y]);
+		uint8 Line = m_CBM.GetDigitOrLetterLine(Di,y);
 		for(int8 x=0; x<DIG_WIDTH; x++)
 		{
 				LM_SetPoint( x0 + x, y0 + y ,(Line>>x) & 1);

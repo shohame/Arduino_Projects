@@ -30,7 +30,7 @@ public:
 	int8 FindCollision(Brick a_Brick_arr[], int8 a_BrickCount, stBrickTouchProp* a_pTouchPr);
 	void ChangeAngleBy(float32 a_dAngle);
 	void Bounce(int8 a_Direction, float32 a_Depth );
-
+	void MarkBrickOnMatrix();
 
 
 };

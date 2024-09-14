@@ -2,6 +2,7 @@
 #include "General.h"
 #include "Brick.h"
 #include "MovingBrick.h"
+#include "Char_BM.h"
 #include "Display.h"
 #include "Led_Matrix.h"
 #include "Price.h"
@@ -44,12 +45,13 @@ void Price::MarkBrickOnMatrix()
 	{
 		for(int8 x=0; x<DIG_WIDTH; x++)
 		{
-				int8 Line = pgm_read_word_near((int8*)&Digit_arr[m_eType][y]);
+			uint8 Line = m_CBM.GetPriceLine(m_eType,y);
+		//		int8 Line = pgm_read_word_near((int8*)&Digit_arr[m_eType][y]);
 
-				if((Line>>x) & 1)
-				{
-					LM_SetPoint( (int8)m_Loc_s.m_X + x, (int8)m_Loc_s.m_Y + y, 1);
-				}
+			if((Line>>x) & 1)
+			{
+				LM_SetPoint( (int8)m_Loc_s.m_X + x, (int8)m_Loc_s.m_Y + y, 1);
+			}
 		}
 	}
 

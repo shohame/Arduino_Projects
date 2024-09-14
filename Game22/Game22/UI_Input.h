@@ -7,8 +7,8 @@
 #define PIN_KEY_D	4
 
 
-#define PIN_PLAYER_1	16
-#define PIN_PLAYER_2	17
+#define PIN_PLAYER_1	7
+#define PIN_PLAYER_2	8
 
 
 typedef struct stKeyStatus_name

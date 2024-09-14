@@ -85,8 +85,8 @@ void Brick::WhereBrickTouchMe (Brick * a_pBrick, stBrickTouchProp* a_pTouchProp)
 	float32 Y_Cy = Y_Loc.m_Y + Y_half_h;
 	float32 M_Cy = M_Loc.m_Y + M_half_h;
 
-	float32 dX  = ( Y_half_w + M_half_w) - abs( Y_Cx - M_Cx); // if dX > 0  ==> Thay can be tuched!
-	float32 dY  = ( Y_half_h + M_half_h) - abs( Y_Cy - M_Cy); // if dy > 0  ==> Thay can be tuched!
+	float32 dX  = ( Y_half_w + M_half_w) - ABS( Y_Cx - M_Cx); // if dX > 0  ==> Thay can be tuched!
+	float32 dY  = ( Y_half_h + M_half_h) - ABS( Y_Cy - M_Cy); // if dy > 0  ==> Thay can be tuched!
 	
 
 
